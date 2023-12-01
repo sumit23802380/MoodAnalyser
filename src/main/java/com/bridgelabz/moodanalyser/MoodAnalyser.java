@@ -24,7 +24,6 @@ public class MoodAnalyser {
      * @return : type of mood happy , sad or null
      */
     public String analyseMood(){
-
         try {
             String[] wordsInMessage = this.message.toLowerCase().split(" ");
             for (String word : wordsInMessage) {
@@ -34,12 +33,16 @@ public class MoodAnalyser {
                     return "HAPPY";
                 }
             }
+            throw new MoodAnalysisException(MoodAnalysisError.EMPTY_INVALID_MESSAGE);
         }
         catch (NullPointerException e){
-            return "HAPPY";
+            throw new MoodAnalysisException(MoodAnalysisError.NULL_MESSAGE);
         }
-        throw new MoodAnalysisException("Invalid Mood Message");
     }
+    /**
+     * @desc : method to set message
+     * @params : message of string type
+     */
     public void setMessage(String message){
         this.message = message;
     }

@@ -21,8 +21,8 @@ class MoodAnalyserTest {
      */
     @Test
     void analyseMoodTest() {
-        // Tests if message is null or empty
-        assertEquals("HAPPY" , moodAnalyser.analyseMood());
+        // Tests if message is null, empty or invalid mood
+        assertThrows( MoodAnalysisException.class , () -> moodAnalyser.analyseMood());
 
         // Tests if message contains sad
         moodAnalyser.setMessage("I am in Sad Mood");
