@@ -24,15 +24,23 @@ public class MoodAnalyser {
      * @return : type of mood happy , sad or null
      */
     public String analyseMood(){
-        String[] wordsInMessage = this.message.toLowerCase().split(" ");
-        for(String word : wordsInMessage){
-            if(word.equals("sad")){
-                return "SAD";
-            }
-            else if(word.equals("happy")){
-                return "HAPPY";
+
+        try {
+            String[] wordsInMessage = this.message.toLowerCase().split(" ");
+            for (String word : wordsInMessage) {
+                if (word.equals("sad")) {
+                    return "SAD";
+                } else if (word.equals("happy")) {
+                    return "HAPPY";
+                }
             }
         }
-        return null;
+        catch (NullPointerException e){
+            return "HAPPY";
+        }
+        throw new MoodAnalysisException("Invalid Mood Message");
+    }
+    public void setMessage(String message){
+        this.message = message;
     }
 }

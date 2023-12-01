@@ -7,15 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
  * @desc : Test Class for MoodAnalyser Class
  */
 class MoodAnalyserTest {
-    private static MoodAnalyser moodAnalyser1;
-    private static MoodAnalyser moodAnalyser2;
+    private static MoodAnalyser moodAnalyser;
     /**
-     * @desc : Initialized moodAnalyser1 and moodAnalyser2 object
+     * @desc : Initialized moodAnalyser
      */
     @BeforeAll
     static void setUp() {
-        moodAnalyser1 = new MoodAnalyser("I am in Sad Mood");
-        moodAnalyser2 = new MoodAnalyser("I am in Happy Mood");
+        moodAnalyser = new MoodAnalyser();
     }
 
     /**
@@ -23,7 +21,15 @@ class MoodAnalyserTest {
      */
     @Test
     void analyseMoodTest() {
-        assertEquals("SAD" , moodAnalyser1.analyseMood());
-        assertEquals("HAPPY" , moodAnalyser2.analyseMood());
+        // Tests if message is null or empty
+        assertEquals("HAPPY" , moodAnalyser.analyseMood());
+
+        // Tests if message contains sad
+        moodAnalyser.setMessage("I am in Sad Mood");
+        assertEquals("SAD" , moodAnalyser.analyseMood());
+
+        // Tests if message contains happy
+        moodAnalyser.setMessage("I am in Happy Mood");
+        assertEquals("HAPPY" , moodAnalyser.analyseMood());
     }
 }
